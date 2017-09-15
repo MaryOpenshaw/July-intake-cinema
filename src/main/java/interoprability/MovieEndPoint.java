@@ -9,11 +9,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.apache.log4j.Logger;
+
+
 import business.MovieService;
 
 
 @Path("/cinema")
 public class MovieEndPoint {
+	
+	private static final Logger LOGGER = Logger.getLogger(MovieEndPoint.class);
 
 	@Inject
 	private MovieService movieService;
@@ -29,6 +34,7 @@ public class MovieEndPoint {
 	@Path("/json")
 	@Produces({ "application/json" })
 	public String addNewMovieToCinema(String movieJSONObject) {
+		LOGGER.info("This is the string " + movieJSONObject);
 		return movieService.addMovie(movieJSONObject);
 	}
 
